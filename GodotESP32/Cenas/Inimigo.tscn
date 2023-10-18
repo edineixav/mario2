@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets Mario/AtlasTexture/goomba_walk_1.tres" type="Texture" id=1]
+[ext_resource path="res://Assets Mario/AtlasTexture/goomba_walk_0.tres" type="Texture" id=2]
+[ext_resource path="res://Cenas/Inimigo.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 16.0312
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9.5, 0.25 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 19, 16 )
+
+[node name="Inimigo" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="Animacao" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 2 )
+animation = "walk"
+frame = 1
+playing = true
+
+[node name="Colisao" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
+
+[node name="AreaImpacto" type="Area2D" parent="."]
+position = Vector2( 0, -4 )
+
+[node name="Colisao" type="CollisionShape2D" parent="AreaImpacto"]
+position = Vector2( 0, -15 )
+shape = SubResource( 4 )
+
+[node name="TimerPatrulha" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 6 )
+
+[connection signal="tree_entered" from="Colisao" to="." method="_on_Colisao_tree_entered"]
+[connection signal="body_entered" from="AreaImpacto" to="." method="_on_AreaImpacto_body_entered"]
+[connection signal="timeout" from="TimerPatrulha" to="." method="_on_TimerPatrulha_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

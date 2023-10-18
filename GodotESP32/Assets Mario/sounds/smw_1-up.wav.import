@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smw_1-up.wav-4ec6d1a3abf82a22553fcd60398fee05.sample"
+
+[deps]
+
+source_file="res://Assets Mario/sounds/smw_1-up.wav"
+dest_files=[ "res://.import/smw_1-up.wav-4ec6d1a3abf82a22553fcd60398fee05.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
